@@ -12,11 +12,21 @@
     with_items:
       - aardes
       - shahroo
-
-  - name: install sudo
+  - name: install epel-release
     package:
-      name: sudo
+      name: epel-release
       state: present
+
+  - name: install packages
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - sudo
+      - tigervnc-server
+      - fluxbox
+      - firefox
+      - iptables-services
 
   - name: Add aardes user to the sudoers
     copy:
@@ -116,11 +126,6 @@
       owner: root
       group: root
       mode: '0755'
-
-  - name: install iptables-services
-    package:
-      name: iptables-services
-      state: present
 
   - name: Setup alternate SSH port
     lineinfile:
