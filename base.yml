@@ -27,6 +27,7 @@
       - fluxbox
       - firefox
       - iptables-services
+      - fail2ban-server
 
   - name: Add aardes user to the sudoers
     copy:
@@ -169,6 +170,20 @@
       name: root
       update_password: always
       password: ""
+
+  - name: Template a file to /etc/fail2ban/jail.local
+    template:
+      src: jail.local
+      dest: /etc/fail2ban/jail.local
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Make sure a service is running
+    systemd:
+      state: started
+      name: fail2ban
+      enabled: yes
 
   - name: Run deferred setup to gather facts
     setup:
