@@ -28,6 +28,7 @@
       - firefox
       - iptables-services
       - fail2ban-server
+      - htop
 
   - name: Add aardes user to the sudoers
     copy:
