@@ -6,5 +6,5 @@ bantime = 3600
 banaction = iptables-multiport
 
 [sshd]
-port = {{ ansible_port }}
+port = {{ ans_port }}
 enabled = true
