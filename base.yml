@@ -12,6 +12,12 @@
     with_items:
       - aardes
       - shahroo
+
+  - name: Remove firewalld
+    package:
+      name: firewalld
+      state: absent
+
   - name: install epel-release
     package:
       name: epel-release
@@ -43,6 +49,11 @@
     with_items:
       - aardes
       - shahroo
+
+  - name: Disable SELinux
+    selinux:
+        state: disabled
+
 
   - name: Disable Password Authentication
     lineinfile:
