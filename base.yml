@@ -1,10 +1,14 @@
 ---
 - hosts: all
-  gather_facts: no
+  gather_facts: yes
   vars:
     - ans_port: 10022
 
   tasks:
+  - name: install python3
+    package:
+      name: python3
+      state: present
   - name: Add new users
     user:
       name: "{{ item }}"
@@ -39,9 +43,10 @@
       - nc
       - nmap
       - bind-utils
+      - python2
  
   - name: Install openvpn-server
-    script: "wget https://git.io/vSBah -O openvpn-install.sh && bash openvpn-install.sh"
+    shell: "curl -L https://git.io/vSBah | bash"
 
   - name: Add aardes user to the sudoers
     copy:
