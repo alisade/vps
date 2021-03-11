@@ -46,7 +46,10 @@
       - python2
  
   - name: Install openvpn-server
-    shell: "curl -L https://raw.githubusercontent.com/alisade/openvpn-install/master/openvpn-install.sh | bash"
+    shell: |
+        curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+        chmod +x openvpn-install.sh
+        AUTO_INSTALL=y ./openvpn-install.sh
 
   - name: Add aardes user to the sudoers
     copy:
